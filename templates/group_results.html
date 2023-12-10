@@ -1,0 +1,14 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="m-5">
+    {% for group in groups %}
+
+    <div class="mb-1 bg-secondary-subtle rounded p-3 d-flex">
+        <div class="w-100 fs-5">{{ group }}</div>
+        <a class="me-3 fs-5" href="/groups/{{ group }}">Visit</a>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

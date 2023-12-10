@@ -1,0 +1,33 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="m-5">
+    <p>* You can either post an individual song or an album at one time *</p>
+
+    <form action="/groups/{{ group_name }}/post" , method="post">
+        <div class="d-flex mb-3">
+            <input placeholder="Song" autocomplete="off" class="song form-control" name="song" type="text">
+            <button class="edit-btn border border-none rounded ms-3" type="submit">Search</button>
+        </div>
+        <div class="d-flex mb-3">
+            <input placeholder="Album" autocomplete="off" class="album form-control" name="album" type="text">
+            <button class="edit-btn border border-none rounded ms-3" type="submit">Search</button>
+        </div>
+    </form>
+
+    {% if results is defined %}
+    <form class="" action="/groups/{{ group_name }}" , method="post">
+
+        <select name="{{ type }}" id="" class="form-select mb-3">
+            {% for item in results %}
+            <option value="{{ item }}">{{ item['name'] }} | {{ item['artists'][0] }} </option>
+            {% endfor %}
+        </select>
+
+        <textarea type="text" class="form-control mb-2" name="caption" placeholder="Add a caption" id=""></textarea>
+        <button class="w-25" type="submit">Post</button>
+    </form>
+    {% endif %}
+</div>
+
+
+{% endblock %}

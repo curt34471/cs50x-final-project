@@ -1,0 +1,109 @@
+:root {
+    --main-color: #400073;
+    --secondary-color: #caf45c;
+    --tertiary-color: #f2edf5;
+}
+
+.main-color {
+    color: var(--main-color);
+}
+
+.bg-main-color {
+    background-color: var(--main-color);
+}
+
+.secondary-color {
+    color: var(--secondary-color);
+}
+
+.bg-secondary-color {
+    background-color: var(--secondary-color);
+}
+
+.tertiary-color {
+    color: var(--tertiary-color);
+}
+
+.bg-tertiary-color {
+    background-color: var(--tertiary-color);
+}
+
+.input-holder {
+    position: relative;
+}
+
+.input-holder>input {
+    width: 100%;
+    border: 0;
+    border-bottom: 3px solid var(--main-color);
+    outline: none;
+}
+
+.input-holder>label {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.input-holder>input:focus+label,
+.input-holder>input:valid+label {
+    font-size: 75%;
+    top: -13px;
+    transition: 100ms;
+}
+
+.input-holder>button {
+    width: 100%;
+}
+
+main>div {
+    border: 1px solid var(--secondary-color);
+    /* box-shadow: 1px 1px 10px var(--main-color); */
+    width: 350px;
+}
+
+form>button {
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+}
+
+@media only screen and (min-width: 992px) {
+    .wrapper {
+        height: 100vh;
+    }
+}
+
+.nav-btn {
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-decor {
+    list-style-type: none;
+}
+
+.profile-img {
+    width: 200px;
+    height: 200px;
+}
+
+.edit-btn {
+    width: 130px;
+    height: 40px;
+}
+
+.post-margin {
+    margin-right: 150px;
+}
+
+.image {
+    width: 400px;
+    height: 400px;
+}
+
+.post-bg {
+    background-color: rgb(209, 201, 201);
+}

@@ -1,0 +1,30 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="p-5">
+    <form action="/profile/me/edit" method="post">
+        <label for="#username" class="form-label">Username</label>
+        <input type="text" name="username" id="#username" class="form-control">
+        <small class="d-block text-danger">{{ username }}</small>
+
+        <label for="#currentPassword" class="form-label mt-4">Current Password</label>
+        <input type="text" name="currentPassword" id="currentPassword" class="form-control ">
+        <small class="d-block text-danger">{{ password }}</small>
+
+        <label for="#password" class="form-label mt-4">New Password</label>
+        <input type="text" name="newPassword" id="password" class="form-control ">
+        <small class="d-block text-danger">{{ invalidPassword }}</small>
+
+        <div class="">
+            <label class="form-label mt-4">Display a public playlist of yours on your profile.</label>
+        </div>
+        {% for playlist in playlists %}
+        <div class="form-check">
+            <input type="radio" name="playlist" id="{{ playlist['id'] }}" value="{{ playlist['id'] }}" class="form-check-input">
+            <label for="{{ playlist['id'] }}">{{ playlist['name'] }}</label>
+        </div>
+        {% endfor %}
+        <button type="submit" class="bg-main-color edit-btn text-white mt-4">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

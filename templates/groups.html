@@ -1,0 +1,25 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="p-5">
+    <form action="/groups" method="post" class="mb-5">
+        <div class="d-flex">
+            <input class="form-control me-3" type="text" name="group_create" autocomplete="off" required placeholder="Group Name">
+            <button class="edit-btn bg-main-color text-white border border-0 rounded" type="submit">Create</button>
+        </div>
+        <small class="text-danger">{{ unavailable }}</small>
+    </form>
+    {% if groups is defined %}
+    <div class="">
+        Groups you've joined
+    </div>
+    {% endif %} {% for name in groups %}
+    <div class="d-flex bg-secondary-subtle p-4 rounded mb-3">
+        <div class="w-100 fs-5">{{ name }}</div>
+        <div class="me-5 fs-5">
+            <a href="/groups/{{ name }}">Visit</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

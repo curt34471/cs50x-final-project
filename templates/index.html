@@ -1,0 +1,40 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="m-5 d-flex flex-column align-items-center">
+    {% for post in posts %}
+    <div class="w-50 mb-5">
+        <div class="">
+            {% for user in users %} {% if post['user_id'] == user['id'] %}
+            <a href="/profile/{{ user['username'] }}">{{ user['username'] }}</a> {% endif %} {% endfor %} > {% for group in group_names %} {% if group['id'] == post['group_id'] %}
+            <a href="/groups/{{ group['name'] }}">{{ group['name'] }}</a> {% endif %} {% endfor %}
+        </div>
+        <p class="fs-4">{{ post['caption'] }}</p>
+        <div class="text-center">
+            <img class="image" src="{{ post['image'] }}" alt="">
+        </div>
+        <div class="text-center mb-2">
+            {{ post['type'] }} name : {{ post['name'] }}<br> Artist : {{ post['artist'] }}<br>
+            <a target="_blank" href="https://open.spotify.com/{{ post['type'] }}/{{ post['id'] }}">Open on spotify</a>
+        </div>
+        <div class=" comments">
+            <div class="mb-2">
+                {% for comment in comments %} {% if comment['post_id'] == post['post_id'] %}
+                <section>
+                    {% for user in users %} {% if comment['user_id'] == user['id'] %}<b>{{ user['username'] }}</b> {% endif %}{% endfor %} {{ comment['comment'] }}
+                </section>
+                {% endif %} {% endfor %}
+            </div>
+            <form action="/" method="post">
+                <input required autocomplete="off" placeholder="Write a comment..." class="border border-0 form-control" type="text" name="comment" id="">
+                <input type="text" name="post_id" value="{{ post['post_id'] }}" style="display: none;">
+                <input type="text" name="group_id" value="{{ post['group_id'] }}" style="display: none;">
+                <div class="">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

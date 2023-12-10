@@ -1,0 +1,60 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="m-3">
+    <div class="d-flex p-2 mb-3">
+        <h4 class="w-75">{{ group[0]['name'] }}</h4>
+        <div class="">
+            <p>{{ member_count }} members</p>
+            <form action="/groups/{{ group[0]['name'] }}" method="post">
+                {% if button == 'join' %}
+                <button type="submit" name="action" value="join">Join</button> {% else %}
+                <button type="submit" name="action" value="leave">Leave</button>
+                <button type="submit" name="action" value="post" class="mt-2">Create Post</button> {% endif %}
+            </form>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column align-items-center">
+        {% if user is defined %} {% for x in range(posts|length) %}
+        <div class=" w-50 p-3 mb-5" id="{{ posts[x]['post_id'] }}">
+            <div class="">
+                {% for y in user %} {% if y['id'] == posts[x]['user_id'] %}
+                <a href="/profile/{{ y['username'] }}">
+
+                    <div class=""> {{ y['username'] }}</div>
+
+                </a>
+                {% endif %} {% endfor %}
+
+            </div>
+            <p class="fs-4">{{ posts[x]['caption'] }}</p>
+            <div class="text-center">
+                <img class="image" src="{{ posts[x]['image'] }}" alt="">
+            </div>
+            <div class="text-center mb-2">
+                {{ posts[x]['type'] }} name : {{ posts[x]['name'] }}<br> Artist : {{ posts[x]['artist'] }}<br>
+                <a target="_blank" href="https://open.spotify.com/{{ posts[x]['type'] }}/{{ posts[x]['id'] }}">Open on spotify</a>
+            </div>
+            <div class=" comments">
+                <div class="mb-2">
+                    {% for comment in comments %} {% if comment['post_id'] == posts[x]['post_id'] %}
+                    <section>
+                        {% for z in user %} {% if z['id'] == comment['user_id'] %}
+                        <b>{{ z['username'] }}</b> {{ comment['comment'] }} {% endif %}{% endfor %}
+                    </section>
+                    {% endif %} {% endfor %}
+                </div>
+                <form action="/groups/{{ group[0]['name'] }}" method="post">
+                    <input required autocomplete="off" placeholder="Write a comment..." class="border border-0 form-control" type="text" name="comment" id="">
+                    <input type="text" name="post_id" value="{{ posts[x]['post_id'] }}" style="display: none;">
+                    <div class="">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endfor %} {% endif %}
+    </div>
+</div>
+
+{% endblock %}

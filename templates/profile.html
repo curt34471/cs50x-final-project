@@ -1,0 +1,44 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class=" p-5">
+    <div class="fs-4">Spotify name : {{ user['username'] }}</div>
+    <div class="fs-4">Username : {{ username }}</div>
+    <div class="fs-5">Followers : {{ user['followers'] }}</div>
+    <div class="fs-5 mb-3">
+        <a href="https://open.spotify.com/user/{{ user['id'] }}" target="_blank">Visit Profile</a>
+    </div>
+    {% if request.endpoint == 'profile' %}
+    <a href="/profile/me/edit">
+        <button class="border border-0 rounded edit-btn bg-main-color text-white">
+            Edit Profile
+        </button>
+    </a>
+    {% endif %} {% if tracks is defined %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Artist</th>
+                <th scope="col">Album</th>
+                <th scope="col">
+                    <a href="https://open.spotify.com/playlist/{{ playlist_id }}">Open on spotify</a>
+                </th>
+            </tr>
+            <tbody>
+                {% for track in tracks %}
+                <tr>
+                    <td>{{ track['name'] }}</td>
+                    <td>{{ track['artist'] }}</td>
+                    <td>{{ track['album'] }}</td>
+                    <td> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </thead>
+    </table>
+
+    {% endif %}
+
+</div>
+{% endblock %}

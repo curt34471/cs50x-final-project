@@ -1,0 +1,15 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="m-5">
+    {% for x in range(users|length) %}
+
+    <div class="mb-1 bg-secondary-subtle rounded p-3">
+        <div class="">Username: {{users[x]['username']}}</div>
+        <div class="">Spotify Name: {{spotify[x]['username']}}</div>
+        <a href="/profile/{{users[x]['username']}}">Visit Profile</a>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}
